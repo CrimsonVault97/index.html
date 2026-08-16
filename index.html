@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
 <title>Caffeine Nation</title>
 
 <style>
+
 /* =========================================================
-   YOUR ORIGINAL CAFFIE STYLE
+   ORIGINAL CAFFIE STYLE
 ========================================================= */
 
 * {
@@ -24,511 +26,941 @@ body {
   min-height: 100vh;
   background: #0b0604;
   color: #faedcd;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
-  Roboto, Helvetica, Arial, sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  overflow-x: hidden;
 }
 
-/* MAIN */
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
 
 .caffie-wrapper {
+
   width: 100%;
   max-width: 480px;
+
   margin: 20px auto;
+
   padding: 32px 24px;
+
   background: #0b0604;
+
   border-radius: 24px;
+
   border: 1px solid #8b5a2b;
+
   box-shadow:
     0 25px 50px -12px rgba(0,0,0,.9),
     0 0 30px rgba(212,163,115,.08);
+
+  position: relative;
+
+  z-index: 2;
+
+  transition:
+    box-shadow .5s ease,
+    transform .3s ease;
 }
 
-/* BUTTONS */
+
+/* =========================================================
+   MENU BUTTONS
+========================================================= */
 
 .menu-button {
+
   display: block;
+
   width: 100%;
+
   text-decoration: none;
+
   background: #140b06;
+
   border: 1px solid #3d2314;
+
   color: #d4a373;
+
   padding: 14px;
+
   border-radius: 12px;
+
   font-size: 13px;
+
   font-weight: 700;
+
   margin-bottom: 8px;
+
   cursor: pointer;
+
+  position: relative;
+
+  overflow: hidden;
+
   transition:
-    transform .15s ease,
-    border-color .15s ease,
-    background .15s ease;
+    transform .25s ease,
+    background .25s ease,
+    border-color .25s ease,
+    color .25s ease,
+    box-shadow .25s ease;
 }
+
+
+/* =========================================================
+   HOVER
+========================================================= */
 
 .menu-button:hover {
+
   background: rgba(255,183,3,.08);
+
   border-color: #8b5a2b;
-  transform: translateX(3px);
+
+  transform: translateX(4px);
+
 }
 
-.menu-button.active {
-  background: rgba(255,183,3,.08);
-  border-color: #8b5a2b;
-  color: #ffd166;
+
+/* =========================================================
+   CLICKED LAVENDER STATE
+========================================================= */
+
+.menu-button.clicked {
+
+  background: #D3D3FF !important;
+
+  color: #0b0604 !important;
+
+  border-color: #D3D3FF !important;
+
+  box-shadow:
+    0 0 8px rgba(211,211,255,.65),
+    0 0 20px rgba(211,211,255,.30);
+
+  transform:
+    translateX(5px)
+    scale(1.015);
+
 }
 
-.arrow {
-  float: right;
-  color: #8b5a2b;
+
+.menu-button.clicked .arrow {
+
+  color: #0b0604 !important;
+
 }
 
-/* STATUS */
+
+/* =========================================================
+   CLICK RIPPLE
+========================================================= */
+
+.click-ripple {
+
+  position: absolute;
+
+  width: 10px;
+  height: 10px;
+
+  background: #D3D3FF;
+
+  border-radius: 50%;
+
+  transform: scale(0);
+
+  opacity: .8;
+
+  animation: ripple .65s ease-out;
+
+  pointer-events: none;
+
+}
+
+
+@keyframes ripple {
+
+  to {
+
+    transform: scale(25);
+
+    opacity: 0;
+
+  }
+
+}
+
+
+/* =========================================================
+   STATUS BOX
+========================================================= */
 
 .status-box {
+
   display: none;
+
   background: #140b06;
+
   border: 1px solid #52331c;
+
   border-radius: 14px;
+
   padding: 14px;
+
   margin-bottom: 20px;
+
   color: #d4a373;
+
   font-size: 12px;
+
   line-height: 1.5;
+
+  animation: statusIn .3s ease;
+
 }
+
 
 .status-box.show {
+
   display: block;
+
 }
+
 
 .status-title {
+
   color: #ffd166;
+
   font-weight: 900;
+
   margin-bottom: 5px;
+
 }
 
-/* MOBILE */
 
-@media (max-width: 520px) {
-  .caffie-wrapper {
-    margin: 0;
-    min-height: 100vh;
-    border-radius: 0;
-    border-left: 0;
-    border-right: 0;
+@keyframes statusIn {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(-8px);
+
   }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+  }
+
 }
+
+
+/* =========================================================
+   CAFFIE GLOW
+========================================================= */
+
+.caffie-wrapper.pulse {
+
+  box-shadow:
+
+    0 25px 50px -12px rgba(0,0,0,.9),
+
+    0 0 35px rgba(211,211,255,.20),
+
+    0 0 70px rgba(211,211,255,.07);
+
+}
+
+
+/* =========================================================
+   FLOATING PARTICLES
+========================================================= */
+
+.floating-particle {
+
+  position: fixed;
+
+  left: 0;
+
+  bottom: -30px;
+
+  pointer-events: none;
+
+  z-index: 1;
+
+  opacity: 0;
+
+  color: #D3D3FF;
+
+  text-shadow:
+    0 0 8px rgba(211,211,255,.45);
+
+  animation:
+    floatUp linear forwards;
+
+}
+
+
+@keyframes floatUp {
+
+  0% {
+
+    transform:
+      translateY(0)
+      translateX(0)
+      rotate(0deg)
+      scale(.7);
+
+    opacity: 0;
+
+  }
+
+
+  15% {
+
+    opacity: .65;
+
+  }
+
+
+  50% {
+
+    transform:
+      translateY(-45vh)
+      translateX(25px)
+      rotate(120deg)
+      scale(1);
+
+  }
+
+
+  100% {
+
+    transform:
+      translateY(-110vh)
+      translateX(-25px)
+      rotate(240deg)
+      scale(.6);
+
+    opacity: 0;
+
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width:520px) {
+
+  .caffie-wrapper {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    border-radius: 0;
+
+    border-left: 0;
+
+    border-right: 0;
+
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion:reduce) {
+
+  *,
+  *::before,
+  *::after {
+
+    animation-duration: .01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: .01ms !important;
+
+  }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="caffie-wrapper">
 
-  <!-- TOP BRANDING -->
 
-  <div style="text-align:center; margin-bottom:24px;">
+<!-- =======================================================
+     TOP BRANDING
+======================================================= -->
 
-    <div style="
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      background:rgba(212,163,115,0.1);
-      color:#d4a373;
-      font-size:10px;
-      font-weight:800;
-      letter-spacing:3px;
-      padding:6px 16px;
-      border-radius:30px;
-      border:1px solid #52331c;
-      text-transform:uppercase;
-      margin-bottom:12px;
-    ">
-      <span>☕</span>
-      EST. CAFFEINE NATION
-      <span>♟️</span>
-    </div>
+<div style="text-align:center; margin-bottom:24px;">
 
-    <h1 style="
-      color:#ffd166;
-      font-size:26px;
-      font-weight:900;
-      margin:0 0 4px 0;
-      letter-spacing:2px;
-      text-shadow:0 4px 12px rgba(255,209,102,.25);
-    ">
-      CAFFEINE NATION
-    </h1>
+  <div style="
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(212,163,115,0.1);
+    color:#d4a373;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:3px;
+    padding:6px 16px;
+    border-radius:30px;
+    border:1px solid #52331c;
+    text-transform:uppercase;
+    margin-bottom:12px;
+  ">
 
-    <p style="
-      font-size:11px;
-      letter-spacing:3px;
-      margin:0;
-      color:#a67c52;
-      font-weight:bold;
-      text-transform:uppercase;
-    ">
-      CHESS CLUB
-    </p>
+    <span>☕</span>
+
+    EST. CAFFEINE NATION
+
+    <span>♟️</span>
 
   </div>
 
 
-  <!-- DIVIDER -->
+  <h1 style="
+    color:#ffd166;
+    font-size:26px;
+    font-weight:900;
+    margin:0 0 4px 0;
+    letter-spacing:2px;
+    text-shadow:
+      0 4px 12px rgba(255,209,102,.25);
+  ">
+
+    CAFFEINE NATION
+
+  </h1>
+
+
+  <p style="
+    font-size:11px;
+    letter-spacing:3px;
+    margin:0;
+    color:#a67c52;
+    font-weight:bold;
+    text-transform:uppercase;
+  ">
+
+    CHESS CLUB
+
+  </p>
+
+</div>
+
+
+<!-- =======================================================
+     DIVIDER
+======================================================= -->
+
+<div style="
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:20px 0;
+">
 
   <div style="
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin:20px 0;
-  ">
-    <div style="
-      height:1px;
-      background:linear-gradient(
+    height:1px;
+    background:
+      linear-gradient(
         90deg,
         transparent,
         #52331c,
         transparent
       );
-      width:100%;
-    "></div>
+    width:100%;
+  "></div>
+
+</div>
+
+
+<!-- =======================================================
+     STATUS
+======================================================= -->
+
+<div id="statusBox" class="status-box">
+
+  <div id="statusTitle" class="status-title">
+    CAFFEINE NATION
   </div>
 
-
-  <!-- STATUS MESSAGE -->
-
-  <div id="statusBox" class="status-box">
-
-    <div id="statusTitle" class="status-title">
-      CAFFEINE NATION
-    </div>
-
-    <div id="statusText">
-      Select an option from the sidebar.
-    </div>
-
+  <div id="statusText">
+    Select an option from the sidebar.
   </div>
 
-
-  <!-- PROFILE -->
-
-  <a
-    href="https://www.chess.com/"
-    target="_blank"
-    class="menu-button"
-    data-name="Profile"
-  >
-    ♟️ &nbsp; Chess Profile
-    <span class="arrow">›</span>
-  </a>
+</div>
 
 
-  <!-- PLAY -->
+<!-- =======================================================
+     PROFILE
+======================================================= -->
 
-  <div style="
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid #3d2314;
-    padding-bottom:8px;
-    margin:20px 0 10px;
-  ">
-    <span style="
-      font-size:11px;
-      color:#ffd166;
-      font-weight:800;
-      letter-spacing:2px;
-      text-transform:uppercase;
-    ">
-      ♟️ PLAY
-    </span>
-  </div>
+<a
+  href="https://www.chess.com/"
+  target="_blank"
+  class="menu-button"
+  data-name="Chess Profile"
+>
+
+  ♟️ &nbsp; Chess Profile
+
+  <span class="arrow">
+    ›
+  </span>
+
+</a>
 
 
-  <a
-    href="https://www.chess.com/play/online"
-    target="_blank"
-    class="menu-button"
-    data-name="Play Chess"
-  >
-    ♟️ &nbsp; Play Chess
-    <span class="arrow">›</span>
-  </a>
+<!-- =======================================================
+     PLAY
+======================================================= -->
 
+<div style="
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #3d2314;
+  padding-bottom:8px;
+  margin:20px 0 10px;
+">
 
-  <a
-    href="https://www.chess.com/play/online"
-    target="_blank"
-    class="menu-button"
-    data-name="Quick Game"
-  >
-    ⚡ &nbsp; Quick Game
-    <span class="arrow">›</span>
-  </a>
-
-
-  <a
-    href="https://www.chess.com/play/computer"
-    target="_blank"
-    class="menu-button"
-    data-name="Computer"
-  >
-    🤖 &nbsp; Play Computer
-    <span class="arrow">›</span>
-  </a>
-
-
-  <!-- LEARN -->
-
-  <div style="
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid #3d2314;
-    padding-bottom:8px;
-    margin:20px 0 10px;
-  ">
-    <span style="
-      font-size:11px;
-      color:#ffd166;
-      font-weight:800;
-      letter-spacing:2px;
-      text-transform:uppercase;
-    ">
-      📚 LEARN
-    </span>
-  </div>
-
-
-  <a
-    href="https://www.chess.com/puzzles"
-    target="_blank"
-    class="menu-button"
-    data-name="Puzzles"
-  >
-    🧩 &nbsp; Puzzles
-    <span class="arrow">›</span>
-  </a>
-
-
-  <a
-    href="https://www.chess.com/lessons"
-    target="_blank"
-    class="menu-button"
-    data-name="Lessons"
-  >
-    📖 &nbsp; Lessons
-    <span class="arrow">›</span>
-  </a>
-
-
-  <a
-    href="https://www.chess.com/puzzles/rush"
-    target="_blank"
-    class="menu-button"
-    data-name="Puzzle Rush"
-  >
-    🎯 &nbsp; Puzzle Rush
-    <span class="arrow">›</span>
-  </a>
-
-
-  <!-- COMMUNITY -->
-
-  <div style="
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid #3d2314;
-    padding-bottom:8px;
-    margin:20px 0 10px;
-  ">
-    <span style="
-      font-size:11px;
-      color:#ffd166;
-      font-weight:800;
-      letter-spacing:2px;
-      text-transform:uppercase;
-    ">
-      👥 COMMUNITY
-    </span>
-  </div>
-
-
-  <!-- REAL CAFFEINE NATION CLUB -->
-
-  <a
-    href="https://www.chess.com/club/group-1194b36cff620121d7c66738e87ce767"
-    target="_blank"
-    class="menu-button active"
-    data-name="Caffeine Nation Club"
-  >
-    ♜ &nbsp; Caffeine Nation Club
-    <span class="arrow">›</span>
-  </a>
-
-
-  <a
-    href="https://www.chess.com/tournaments"
-    target="_blank"
-    class="menu-button"
-    data-name="Tournaments"
-  >
-    🏆 &nbsp; Tournaments
-    <span class="arrow">›</span>
-  </a>
-
-
-  <a
-    href="https://www.chess.com/leaderboard"
-    target="_blank"
-    class="menu-button"
-    data-name="Leaderboard"
-  >
-    👑 &nbsp; Leaderboard
-    <span class="arrow">›</span>
-  </a>
-
-
-  <a
-    href="https://www.chess.com/players"
-    target="_blank"
-    class="menu-button"
-    data-name="Players"
-  >
-    👥 &nbsp; Players
-    <span class="arrow">›</span>
-  </a>
-
-
-  <a
-    href="https://www.chess.com/clubs"
-    target="_blank"
-    class="menu-button"
-    data-name="Chess Clubs"
-  >
-    ♟️ &nbsp; Chess Clubs
-    <span class="arrow">›</span>
-  </a>
-
-
-  <!-- SOCIAL -->
-
-  <div style="
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid #3d2314;
-    padding-bottom:8px;
-    margin:20px 0 10px;
-  ">
-    <span style="
-      font-size:11px;
-      color:#ffd166;
-      font-weight:800;
-      letter-spacing:2px;
-      text-transform:uppercase;
-    ">
-      💬 SOCIAL
-    </span>
-  </div>
-
-
-  <a
-    href="https://www.chess.com/news"
-    target="_blank"
-    class="menu-button"
-    data-name="Chess News"
-  >
-    📰 &nbsp; Chess News
-    <span class="arrow">›</span>
-  </a>
-
-
-  <a
-    href="https://www.chess.com/forum"
-    target="_blank"
-    class="menu-button"
-    data-name="Forums"
-  >
-    💬 &nbsp; Forums
-    <span class="arrow">›</span>
-  </a>
-
-
-  <!-- SYSTEM -->
-
-  <div style="
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid #3d2314;
-    padding-bottom:8px;
-    margin:20px 0 10px;
-  ">
-    <span style="
-      font-size:11px;
-      color:#ffd166;
-      font-weight:800;
-      letter-spacing:2px;
-      text-transform:uppercase;
-    ">
-      ⚙️ SYSTEM
-    </span>
-  </div>
-
-
-  <button
-    class="menu-button"
-    id="settingsButton"
-    type="button"
-    data-name="Settings"
-    style="text-align:left;"
-  >
-    ⚙️ &nbsp; Settings
-    <span class="arrow">›</span>
-  </button>
-
-
-  <button
-    class="menu-button"
-    id="themeButton"
-    type="button"
-    data-name="Theme"
-    style="text-align:left;"
-  >
-    🌙 &nbsp; Toggle Glow
-    <span class="arrow">›</span>
-  </button>
-
-
-  <!-- FOOTER -->
-
-  <div style="
-    text-align:center;
-    border-top:1px solid #24140b;
-    padding-top:14px;
-    margin-top:24px;
+  <span style="
+    font-size:11px;
+    color:#ffd166;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
   ">
 
-    <p style="
-      font-weight:800;
-      font-size:10px;
-      margin:0;
-      color:#a67c52;
-      letter-spacing:4px;
-      text-transform:uppercase;
-    ">
-      &bull; STAY CAFFEINATED &bull;
-    </p>
+    ♟️ PLAY
 
-    <p style="
-      font-size:9px;
-      color:#52331c;
-      margin:8px 0 0;
-    ">
-      CAFFEINE NATION ♟️
-    </p>
+  </span>
 
-  </div>
+</div>
+
+
+<a
+  href="https://www.chess.com/play/online"
+  target="_blank"
+  class="menu-button"
+  data-name="Play Chess"
+>
+
+  ♟️ &nbsp; Play Chess
+
+  <span class="arrow">
+    ›
+  </span>
+
+</a>
+
+
+<a
+  href="https://www.chess.com/play/online"
+  target="_blank"
+  class="menu-button"
+  data-name="Quick Game"
+>
+
+  ⚡ &nbsp; Quick Game
+
+  <span class="arrow">
+    ›
+  </span>
+
+</a>
+
+
+<a
+  href="https://www.chess.com/play/computer"
+  target="_blank"
+  class="menu-button"
+  data-name="Play Computer"
+>
+
+  🤖 &nbsp; Play Computer
+
+  <span class="arrow">
+    ›
+  </span>
+
+</a>
+
+
+<!-- =======================================================
+     LEARN
+======================================================= -->
+
+<div style="
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #3d2314;
+  padding-bottom:8px;
+  margin:20px 0 10px;
+">
+
+  <span style="
+    font-size:11px;
+    color:#ffd166;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+  ">
+
+    📚 LEARN
+
+  </span>
+
+</div>
+
+
+<a
+  href="https://www.chess.com/puzzles"
+  target="_blank"
+  class="menu-button"
+  data-name="Puzzles"
+>
+
+  🧩 &nbsp; Puzzles
+
+  <span class="arrow">
+    ›
+  </span>
+
+</a>
+
+
+<a
+  href="https://www.chess.com/lessons"
+  target="_blank"
+  class="menu-button"
+  data-name="Lessons"
+>
+
+  📖 &nbsp; Lessons
+
+  <span class="arrow">
+    ›
+  </span>
+
+</a>
+
+
+<a
+  href="https://www.chess.com/puzzles/rush"
+  target="_blank"
+  class="menu-button"
+  data-name="Puzzle Rush"
+>
+
+  🎯 &nbsp; Puzzle Rush
+
+  <span class="arrow">
+    ›
+  </span>
+
+</a>
+
+
+<!-- =======================================================
+     COMMUNITY
+======================================================= -->
+
+<div style="
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #3d2314;
+  padding-bottom:8px;
+  margin:20px 0 10px;
+">
+
+  <span style="
+    font-size:11px;
+    color:#ffd166;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+  ">
+
+    👥 COMMUNITY
+
+  </span>
+
+</div>
+
+
+<!-- CAFFEINE NATION CLUB -->
+
+<a
+  href="https://www.chess.com/club/group-1194b36cff620121d7c66738e87ce767"
+  target="_blank"
+  class="menu-button"
+  data-name="Caffeine Nation Club"
+>
+
+  ♜ &nbsp; Caffeine Nation Club
+
+  <span class="arrow">
+    ›
+  </span>
+
+</a>
+
+
+<a
+  href="https://www.chess.com/tournaments"
+  target="_blank"
+  class="menu-button"
+  data-name="Tournaments"
+>
+
+  🏆 &nbsp; Tournaments
+
+  <span class="arrow">
+    ›
+  </span>
+
+</a>
+
+
+<a
+  href="https://www.chess.com/leaderboard"
+  target="_blank"
+  class="menu-button"
+  data-name="Leaderboard"
+>
+
+  👑 &nbsp; Leaderboard
+
+  <span class="arrow">
+    ›
+  </span>
+
+</a>
+
+
+<a
+  href="https://www.chess.com/players"
+  target="_blank"
+  class="menu-button"
+  data-name="Players"
+>
+
+  👥 &nbsp; Players
+
+  <span class="arrow">
+    ›
+  </span>
+
+</a>
+
+
+<a
+  href="https://www.chess.com/clubs"
+  target="_blank"
+  class="menu-button"
+  data-name="Chess Clubs"
+>
+
+  ♟️ &nbsp; Chess Clubs
+
+  <span class="arrow">
+    ›
+  </span>
+
+</a>
+
+
+<!-- =======================================================
+     SOCIAL
+======================================================= -->
+
+<div style="
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #3d2314;
+  padding-bottom:8px;
+  margin:20px 0 10px;
+">
+
+  <span style="
+    font-size:11px;
+    color:#ffd166;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+  ">
+
+    💬 SOCIAL
+
+  </span>
+
+</div>
+
+
+<a
+  href="https://www.chess.com/news"
+  target="_blank"
+  class="menu-button"
+  data-name="Chess News"
+>
+
+  📰 &nbsp; Chess News
+
+  <span class="arrow">
+    ›
+  </span>
+
+</a>
+
+
+<a
+  href="https://www.chess.com/forum"
+  target="_blank"
+  class="menu-button"
+  data-name="Forums"
+>
+
+  💬 &nbsp; Forums
+
+  <span class="arrow">
+    ›
+  </span>
+
+</a>
+
+
+<!-- =======================================================
+     SYSTEM
+======================================================= -->
+
+<div style="
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #3d2314;
+  padding-bottom:8px;
+  margin:20px 0 10px;
+">
+
+  <span style="
+    font-size:11px;
+    color:#ffd166;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+  ">
+
+    ⚙️ SYSTEM
+
+  </span>
+
+</div>
+
+
+<button
+  id="settingsButton"
+  class="menu-button"
+  data-name="Settings"
+  type="button"
+  style="text-align:left;"
+>
+
+  ⚙️ &nbsp; Settings
+
+  <span class="arrow">
+    ›
+  </span>
+
+</button>
+
+
+<button
+  id="glowButton"
+  class="menu-button"
+  data-name="Caffeine Glow"
+  type="button"
+  style="text-align:left;"
+>
+
+  ✨ &nbsp; Caffeine Glow
+
+  <span class="arrow">
+    ›
+  </span>
+
+</button>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
+<div style="
+  text-align:center;
+  border-top:1px solid #24140b;
+  padding-top:14px;
+  margin-top:24px;
+">
+
+  <p style="
+    font-weight:800;
+    font-size:10px;
+    margin:0;
+    color:#a67c52;
+    letter-spacing:4px;
+    text-transform:uppercase;
+  ">
+
+    &bull; STAY CAFFEINATED &bull;
+
+  </p>
+
+
+  <p style="
+    font-size:9px;
+    color:#52331c;
+    margin:8px 0 0;
+  ">
+
+    CAFFEINE NATION ♟️
+
+  </p>
+
+</div>
+
 
 </div>
 
@@ -539,101 +971,286 @@ body {
 
 <script>
 
-const buttons = document.querySelectorAll(".menu-button");
+/* =========================================================
+   BUTTON SYSTEM
+========================================================= */
 
-const statusBox = document.getElementById("statusBox");
-const statusTitle = document.getElementById("statusTitle");
-const statusText = document.getElementById("statusText");
+const buttons =
+  document.querySelectorAll(".menu-button");
+
+const statusBox =
+  document.getElementById("statusBox");
+
+const statusTitle =
+  document.getElementById("statusTitle");
+
+const statusText =
+  document.getElementById("statusText");
+
+const wrapper =
+  document.querySelector(".caffie-wrapper");
+
 
 buttons.forEach(button => {
 
-  button.addEventListener("click", () => {
+  button.addEventListener("click", function(event) {
+
+    /*
+      Don't interfere with normal links.
+      The animation still happens.
+    */
 
     buttons.forEach(item => {
-      item.classList.remove("active");
+
+      item.classList.remove("clicked");
+
     });
 
-    button.classList.add("active");
 
-    const name = button.dataset.name;
+    this.classList.add("clicked");
 
-    statusTitle.textContent = name;
 
-    statusText.textContent =
-      "Opening " + name + "...";
+    /* RIPPLE */
 
-    statusBox.classList.add("show");
+    const ripple =
+      document.createElement("span");
+
+    ripple.className =
+      "click-ripple";
+
+
+    const rect =
+      this.getBoundingClientRect();
+
+
+    ripple.style.left =
+      (event.clientX - rect.left) + "px";
+
+
+    ripple.style.top =
+      (event.clientY - rect.top) + "px";
+
+
+    this.appendChild(ripple);
+
+
+    setTimeout(() => {
+
+      ripple.remove();
+
+    }, 650);
+
+
+    /* MAIN GLOW */
+
+    if (wrapper) {
+
+      wrapper.classList.remove("pulse");
+
+      void wrapper.offsetWidth;
+
+      wrapper.classList.add("pulse");
+
+    }
+
+
+    /* STATUS */
+
+    const name =
+      this.dataset.name;
+
+
+    if (statusBox &&
+        statusTitle &&
+        statusText) {
+
+      statusTitle.textContent =
+        name;
+
+      statusText.textContent =
+        "Caffeine Nation • " +
+        name;
+
+      statusBox.classList.add("show");
+
+    }
 
   });
 
 });
 
 
-/* SETTINGS BUTTON */
+/* =========================================================
+   SETTINGS
+========================================================= */
 
-document.getElementById("settingsButton")
-.addEventListener("click", () => {
-
-  statusBox.classList.add("show");
-
-  statusTitle.textContent = "Settings";
-
-  statusText.textContent =
-    "Caffeine Nation settings are ready.";
-
-});
+const settingsButton =
+  document.getElementById("settingsButton");
 
 
-/* GLOW BUTTON */
+settingsButton.addEventListener(
+  "click",
+  function() {
+
+    statusBox.classList.add("show");
+
+    statusTitle.textContent =
+      "Settings";
+
+    statusText.textContent =
+      "Caffeine Nation settings are ready.";
+
+  }
+);
+
+
+/* =========================================================
+   CAFFEINE GLOW TOGGLE
+========================================================= */
+
+const glowButton =
+  document.getElementById("glowButton");
 
 let glowEnabled = true;
 
-document.getElementById("themeButton")
-.addEventListener("click", () => {
 
-  glowEnabled = !glowEnabled;
+glowButton.addEventListener(
+  "click",
+  function() {
 
-  const wrapper =
-    document.querySelector(".caffie-wrapper");
+    glowEnabled =
+      !glowEnabled;
 
-  if (glowEnabled) {
 
-    wrapper.style.boxShadow =
-      "0 25px 50px -12px rgba(0,0,0,.9), 0 0 30px rgba(212,163,115,.08)";
+    if (glowEnabled) {
 
-    statusTitle.textContent = "Glow Enabled";
+      wrapper.style.boxShadow =
 
-    statusText.textContent =
-      "Caffeine Nation glow is back.";
+        "0 25px 50px -12px rgba(0,0,0,.9)," +
 
-  } else {
+        "0 0 35px rgba(211,211,255,.20)," +
 
-    wrapper.style.boxShadow =
-      "0 25px 50px -12px rgba(0,0,0,.9)";
+        "0 0 70px rgba(211,211,255,.07)";
 
-    statusTitle.textContent = "Glow Disabled";
 
-    statusText.textContent =
-      "Caffeine Nation glow has been turned off.";
+      statusTitle.textContent =
+        "Caffeine Glow ON";
+
+
+      statusText.textContent =
+        "The lavender Caffeine Glow is active.";
+
+    }
+
+    else {
+
+      wrapper.style.boxShadow =
+
+        "0 25px 50px -12px rgba(0,0,0,.9)";
+
+
+      statusTitle.textContent =
+        "Caffeine Glow OFF";
+
+
+      statusText.textContent =
+        "The extra glow has been turned off.";
+
+    }
+
+
+    statusBox.classList.add("show");
 
   }
-
-  statusBox.classList.add("show");
-
-});
+);
 
 
-/* KEYBOARD SUPPORT */
+/* =========================================================
+   FLOATING PARTICLES
+========================================================= */
 
-document.addEventListener("keydown", event => {
+const particleSymbols = [
 
-  if (event.key === "Escape") {
-    statusBox.classList.remove("show");
-  }
+  "☕",
+  "♟",
+  "✦",
+  "✧",
+  "•"
 
-});
+];
+
+
+function createParticle() {
+
+  const particle =
+    document.createElement("div");
+
+
+  particle.className =
+    "floating-particle";
+
+
+  particle.textContent =
+    particleSymbols[
+      Math.floor(
+        Math.random() *
+        particleSymbols.length
+      )
+    ];
+
+
+  particle.style.left =
+    Math.random() * 100 + "vw";
+
+
+  particle.style.fontSize =
+    (10 + Math.random() * 14) + "px";
+
+
+  particle.style.animationDuration =
+    (6 + Math.random() * 7) + "s";
+
+
+  document.body.appendChild(
+    particle
+  );
+
+
+  setTimeout(() => {
+
+    particle.remove();
+
+  }, 14000);
+
+}
+
+
+/* Start particles */
+
+for (
+  let i = 0;
+  i < 5;
+  i++
+) {
+
+  setTimeout(
+    createParticle,
+    i * 500
+  );
+
+}
+
+
+/* Continue particles */
+
+setInterval(
+  createParticle,
+  900
+);
 
 </script>
 
+
 </body>
+
 </html>
