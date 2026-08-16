@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +7,6 @@
 <title>Caffeine Nation</title>
 
 <style>
-
-/* =========================================================
-   ORIGINAL CAFFIE STYLE
-========================================================= */
 
 * {
   box-sizing: border-box;
@@ -24,8 +19,10 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+
   background: #0b0604;
   color: #faedcd;
+
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -40,12 +37,86 @@ body {
 
 
 /* =========================================================
-   MAIN CONTAINER
+   FLOATING BACKGROUND
+========================================================= */
+
+#particles {
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  overflow: hidden;
+
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+
+  bottom: -60px;
+
+  color: #D3D3FF;
+
+  font-weight: 900;
+
+  opacity: 0;
+
+  text-shadow:
+    0 0 8px rgba(211,211,255,.8),
+    0 0 20px rgba(211,211,255,.4);
+
+  animation: floatParticle linear forwards;
+}
+
+@keyframes floatParticle {
+
+  0% {
+    transform:
+      translate3d(0,0,0)
+      rotate(0deg)
+      scale(.5);
+
+    opacity: 0;
+  }
+
+  12% {
+    opacity: .9;
+  }
+
+  40% {
+    transform:
+      translate3d(35px,-35vh,0)
+      rotate(100deg)
+      scale(1);
+  }
+
+  70% {
+    transform:
+      translate3d(-40px,-70vh,0)
+      rotate(220deg)
+      scale(.9);
+  }
+
+  100% {
+    transform:
+      translate3d(50px,-115vh,0)
+      rotate(360deg)
+      scale(.5);
+
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   MAIN CAFFIE CONTAINER
 ========================================================= */
 
 .caffie-wrapper {
 
   width: 100%;
+
   max-width: 480px;
 
   margin: 20px auto;
@@ -53,6 +124,8 @@ body {
   padding: 32px 24px;
 
   background: #0b0604;
+
+  color: #faedcd;
 
   border-radius: 24px;
 
@@ -67,13 +140,47 @@ body {
   z-index: 2;
 
   transition:
-    box-shadow .5s ease,
-    transform .3s ease;
+    box-shadow .35s ease,
+    transform .35s ease;
 }
 
 
 /* =========================================================
-   MENU BUTTONS
+   LAVENDER CAFFEINE PULSE
+========================================================= */
+
+.caffie-wrapper.lavender-pulse {
+
+  animation: lavenderPulse .65s ease;
+
+}
+
+@keyframes lavenderPulse {
+
+  0% {
+    box-shadow:
+      0 25px 50px -12px rgba(0,0,0,.9),
+      0 0 30px rgba(212,163,115,.08);
+  }
+
+  45% {
+    box-shadow:
+      0 25px 50px -12px rgba(0,0,0,.9),
+      0 0 55px rgba(211,211,255,.65),
+      0 0 100px rgba(211,211,255,.25);
+  }
+
+  100% {
+    box-shadow:
+      0 25px 50px -12px rgba(0,0,0,.9),
+      0 0 30px rgba(212,163,115,.08);
+  }
+
+}
+
+
+/* =========================================================
+   BUTTONS
 ========================================================= */
 
 .menu-button {
@@ -107,17 +214,16 @@ body {
   overflow: hidden;
 
   transition:
-    transform .25s ease,
+    transform .2s ease,
     background .25s ease,
     border-color .25s ease,
     color .25s ease,
     box-shadow .25s ease;
+
 }
 
 
-/* =========================================================
-   HOVER
-========================================================= */
+/* Hover */
 
 .menu-button:hover {
 
@@ -125,13 +231,15 @@ body {
 
   border-color: #8b5a2b;
 
-  transform: translateX(4px);
+  transform:
+    translateX(5px)
+    scale(1.01);
 
 }
 
 
 /* =========================================================
-   CLICKED LAVENDER STATE
+   CLICKED LAVENDER BUTTON
 ========================================================= */
 
 .menu-button.clicked {
@@ -143,12 +251,38 @@ body {
   border-color: #D3D3FF !important;
 
   box-shadow:
-    0 0 8px rgba(211,211,255,.65),
-    0 0 20px rgba(211,211,255,.30);
+    0 0 12px rgba(211,211,255,.9),
+    0 0 30px rgba(211,211,255,.55),
+    inset 0 0 15px rgba(255,255,255,.35);
 
   transform:
-    translateX(5px)
-    scale(1.015);
+    translateX(7px)
+    scale(1.025);
+
+  animation: buttonGlow .55s ease;
+
+}
+
+
+@keyframes buttonGlow {
+
+  0% {
+    transform:
+      translateX(7px)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translateX(9px)
+      scale(1.045);
+  }
+
+  100% {
+    transform:
+      translateX(7px)
+      scale(1.025);
+  }
 
 }
 
@@ -161,36 +295,41 @@ body {
 
 
 /* =========================================================
-   CLICK RIPPLE
+   RIPPLE
 ========================================================= */
 
 .click-ripple {
 
   position: absolute;
 
-  width: 10px;
-  height: 10px;
+  width: 15px;
 
-  background: #D3D3FF;
+  height: 15px;
 
   border-radius: 50%;
 
-  transform: scale(0);
+  background: #D3D3FF;
 
-  opacity: .8;
+  box-shadow:
+    0 0 15px #D3D3FF,
+    0 0 30px #D3D3FF;
 
-  animation: ripple .65s ease-out;
+  transform: translate(-50%,-50%) scale(0);
 
   pointer-events: none;
+
+  animation: ripple .75s ease-out;
 
 }
 
 
 @keyframes ripple {
 
-  to {
+  100% {
 
-    transform: scale(25);
+    transform:
+      translate(-50%,-50%)
+      scale(30);
 
     opacity: 0;
 
@@ -200,7 +339,7 @@ body {
 
 
 /* =========================================================
-   STATUS BOX
+   STATUS
 ========================================================= */
 
 .status-box {
@@ -249,113 +388,13 @@ body {
 @keyframes statusIn {
 
   from {
-
     opacity: 0;
-
     transform: translateY(-8px);
-
   }
 
   to {
-
     opacity: 1;
-
     transform: translateY(0);
-
-  }
-
-}
-
-
-/* =========================================================
-   CAFFIE GLOW
-========================================================= */
-
-.caffie-wrapper.pulse {
-
-  box-shadow:
-
-    0 25px 50px -12px rgba(0,0,0,.9),
-
-    0 0 35px rgba(211,211,255,.20),
-
-    0 0 70px rgba(211,211,255,.07);
-
-}
-
-
-/* =========================================================
-   FLOATING PARTICLES
-========================================================= */
-
-.floating-particle {
-
-  position: fixed;
-
-  left: 0;
-
-  bottom: -30px;
-
-  pointer-events: none;
-
-  z-index: 1;
-
-  opacity: 0;
-
-  color: #D3D3FF;
-
-  text-shadow:
-    0 0 8px rgba(211,211,255,.45);
-
-  animation:
-    floatUp linear forwards;
-
-}
-
-
-@keyframes floatUp {
-
-  0% {
-
-    transform:
-      translateY(0)
-      translateX(0)
-      rotate(0deg)
-      scale(.7);
-
-    opacity: 0;
-
-  }
-
-
-  15% {
-
-    opacity: .65;
-
-  }
-
-
-  50% {
-
-    transform:
-      translateY(-45vh)
-      translateX(25px)
-      rotate(120deg)
-      scale(1);
-
-  }
-
-
-  100% {
-
-    transform:
-      translateY(-110vh)
-      translateX(-25px)
-      rotate(240deg)
-      scale(.6);
-
-    opacity: 0;
-
   }
 
 }
@@ -383,41 +422,26 @@ body {
 
 }
 
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion:reduce) {
-
-  *,
-  *::before,
-  *::after {
-
-    animation-duration: .01ms !important;
-
-    animation-iteration-count: 1 !important;
-
-    transition-duration: .01ms !important;
-
-  }
-
-}
-
 </style>
-
 </head>
 
 
 <body>
 
 
-<div class="caffie-wrapper">
+<!-- FLOATING PARTICLES -->
+
+<div id="particles"></div>
 
 
 <!-- =======================================================
-     TOP BRANDING
+     CAFFIE MAIN
 ======================================================= -->
+
+<div class="caffie-wrapper" id="caffieWrapper">
+
+
+<!-- BRAND -->
 
 <div style="text-align:center; margin-bottom:24px;">
 
@@ -477,9 +501,7 @@ body {
 </div>
 
 
-<!-- =======================================================
-     DIVIDER
-======================================================= -->
+<!-- DIVIDER -->
 
 <div style="
   display:flex;
@@ -503,9 +525,7 @@ body {
 </div>
 
 
-<!-- =======================================================
-     STATUS
-======================================================= -->
+<!-- STATUS -->
 
 <div id="statusBox" class="status-box">
 
@@ -514,15 +534,13 @@ body {
   </div>
 
   <div id="statusText">
-    Select an option from the sidebar.
+    Select an option.
   </div>
 
 </div>
 
 
-<!-- =======================================================
-     PROFILE
-======================================================= -->
+<!-- PROFILE -->
 
 <a
   href="https://www.chess.com/"
@@ -533,16 +551,12 @@ body {
 
   ♟️ &nbsp; Chess Profile
 
-  <span class="arrow">
-    ›
-  </span>
+  <span class="arrow">›</span>
 
 </a>
 
 
-<!-- =======================================================
-     PLAY
-======================================================= -->
+<!-- PLAY -->
 
 <div style="
   display:flex;
@@ -553,17 +567,17 @@ body {
   margin:20px 0 10px;
 ">
 
-  <span style="
-    font-size:11px;
-    color:#ffd166;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-  ">
+<span style="
+  font-size:11px;
+  color:#ffd166;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+">
 
-    ♟️ PLAY
+♟️ PLAY
 
-  </span>
+</span>
 
 </div>
 
@@ -575,11 +589,9 @@ body {
   data-name="Play Chess"
 >
 
-  ♟️ &nbsp; Play Chess
+♟️ &nbsp; Play Chess
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </a>
 
@@ -591,11 +603,9 @@ body {
   data-name="Quick Game"
 >
 
-  ⚡ &nbsp; Quick Game
+⚡ &nbsp; Quick Game
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </a>
 
@@ -607,18 +617,14 @@ body {
   data-name="Play Computer"
 >
 
-  🤖 &nbsp; Play Computer
+🤖 &nbsp; Play Computer
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </a>
 
 
-<!-- =======================================================
-     LEARN
-======================================================= -->
+<!-- LEARN -->
 
 <div style="
   display:flex;
@@ -629,17 +635,17 @@ body {
   margin:20px 0 10px;
 ">
 
-  <span style="
-    font-size:11px;
-    color:#ffd166;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-  ">
+<span style="
+  font-size:11px;
+  color:#ffd166;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+">
 
-    📚 LEARN
+📚 LEARN
 
-  </span>
+</span>
 
 </div>
 
@@ -651,11 +657,9 @@ body {
   data-name="Puzzles"
 >
 
-  🧩 &nbsp; Puzzles
+🧩 &nbsp; Puzzles
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </a>
 
@@ -667,11 +671,9 @@ body {
   data-name="Lessons"
 >
 
-  📖 &nbsp; Lessons
+📖 &nbsp; Lessons
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </a>
 
@@ -683,18 +685,14 @@ body {
   data-name="Puzzle Rush"
 >
 
-  🎯 &nbsp; Puzzle Rush
+🎯 &nbsp; Puzzle Rush
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </a>
 
 
-<!-- =======================================================
-     COMMUNITY
-======================================================= -->
+<!-- COMMUNITY -->
 
 <div style="
   display:flex;
@@ -705,22 +703,22 @@ body {
   margin:20px 0 10px;
 ">
 
-  <span style="
-    font-size:11px;
-    color:#ffd166;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-  ">
+<span style="
+  font-size:11px;
+  color:#ffd166;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+">
 
-    👥 COMMUNITY
+👥 COMMUNITY
 
-  </span>
+</span>
 
 </div>
 
 
-<!-- CAFFEINE NATION CLUB -->
+<!-- REAL CLUB -->
 
 <a
   href="https://www.chess.com/club/group-1194b36cff620121d7c66738e87ce767"
@@ -729,11 +727,9 @@ body {
   data-name="Caffeine Nation Club"
 >
 
-  ♜ &nbsp; Caffeine Nation Club
+♜ &nbsp; Caffeine Nation Club
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </a>
 
@@ -745,11 +741,9 @@ body {
   data-name="Tournaments"
 >
 
-  🏆 &nbsp; Tournaments
+🏆 &nbsp; Tournaments
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </a>
 
@@ -761,11 +755,9 @@ body {
   data-name="Leaderboard"
 >
 
-  👑 &nbsp; Leaderboard
+👑 &nbsp; Leaderboard
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </a>
 
@@ -777,11 +769,9 @@ body {
   data-name="Players"
 >
 
-  👥 &nbsp; Players
+👥 &nbsp; Players
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </a>
 
@@ -793,18 +783,14 @@ body {
   data-name="Chess Clubs"
 >
 
-  ♟️ &nbsp; Chess Clubs
+♟️ &nbsp; Chess Clubs
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </a>
 
 
-<!-- =======================================================
-     SOCIAL
-======================================================= -->
+<!-- SOCIAL -->
 
 <div style="
   display:flex;
@@ -815,17 +801,17 @@ body {
   margin:20px 0 10px;
 ">
 
-  <span style="
-    font-size:11px;
-    color:#ffd166;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-  ">
+<span style="
+  font-size:11px;
+  color:#ffd166;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+">
 
-    💬 SOCIAL
+💬 SOCIAL
 
-  </span>
+</span>
 
 </div>
 
@@ -837,11 +823,9 @@ body {
   data-name="Chess News"
 >
 
-  📰 &nbsp; Chess News
+📰 &nbsp; Chess News
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </a>
 
@@ -853,18 +837,14 @@ body {
   data-name="Forums"
 >
 
-  💬 &nbsp; Forums
+💬 &nbsp; Forums
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </a>
 
 
-<!-- =======================================================
-     SYSTEM
-======================================================= -->
+<!-- SYSTEM -->
 
 <div style="
   display:flex;
@@ -875,17 +855,17 @@ body {
   margin:20px 0 10px;
 ">
 
-  <span style="
-    font-size:11px;
-    color:#ffd166;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-  ">
+<span style="
+  font-size:11px;
+  color:#ffd166;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+">
 
-    ⚙️ SYSTEM
+⚙️ SYSTEM
 
-  </span>
+</span>
 
 </div>
 
@@ -893,16 +873,14 @@ body {
 <button
   id="settingsButton"
   class="menu-button"
-  data-name="Settings"
   type="button"
+  data-name="Settings"
   style="text-align:left;"
 >
 
-  ⚙️ &nbsp; Settings
+⚙️ &nbsp; Settings
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </button>
 
@@ -910,23 +888,19 @@ body {
 <button
   id="glowButton"
   class="menu-button"
-  data-name="Caffeine Glow"
   type="button"
+  data-name="Caffeine Glow"
   style="text-align:left;"
 >
 
-  ✨ &nbsp; Caffeine Glow
+✨ &nbsp; Caffeine Glow
 
-  <span class="arrow">
-    ›
-  </span>
+<span class="arrow">›</span>
 
 </button>
 
 
-<!-- =======================================================
-     FOOTER
-======================================================= -->
+<!-- FOOTER -->
 
 <div style="
   text-align:center;
@@ -935,48 +909,51 @@ body {
   margin-top:24px;
 ">
 
-  <p style="
-    font-weight:800;
-    font-size:10px;
-    margin:0;
-    color:#a67c52;
-    letter-spacing:4px;
-    text-transform:uppercase;
-  ">
+<p style="
+  font-weight:800;
+  font-size:10px;
+  margin:0;
+  color:#a67c52;
+  letter-spacing:4px;
+  text-transform:uppercase;
+">
 
-    &bull; STAY CAFFEINATED &bull;
+&bull; STAY CAFFEINATED &bull;
 
-  </p>
+</p>
 
 
-  <p style="
-    font-size:9px;
-    color:#52331c;
-    margin:8px 0 0;
-  ">
+<p style="
+  font-size:9px;
+  color:#52331c;
+  margin:8px 0 0;
+">
 
-    CAFFEINE NATION ♟️
+CAFFEINE NATION ♟️
 
-  </p>
-
-</div>
-
+</p>
 
 </div>
 
 
-<!-- =========================================================
+</div>
+
+
+<!-- =======================================================
      JAVASCRIPT
-========================================================= -->
+======================================================= -->
 
 <script>
 
 /* =========================================================
-   BUTTON SYSTEM
+   BUTTON EFFECT
 ========================================================= */
 
 const buttons =
   document.querySelectorAll(".menu-button");
+
+const wrapper =
+  document.getElementById("caffieWrapper");
 
 const statusBox =
   document.getElementById("statusBox");
@@ -987,18 +964,12 @@ const statusTitle =
 const statusText =
   document.getElementById("statusText");
 
-const wrapper =
-  document.querySelector(".caffie-wrapper");
-
 
 buttons.forEach(button => {
 
   button.addEventListener("click", function(event) {
 
-    /*
-      Don't interfere with normal links.
-      The animation still happens.
-    */
+    /* Remove previous lavender */
 
     buttons.forEach(item => {
 
@@ -1007,10 +978,12 @@ buttons.forEach(button => {
     });
 
 
+    /* Make clicked button lavender */
+
     this.classList.add("clicked");
 
 
-    /* RIPPLE */
+    /* Ripple */
 
     const ripple =
       document.createElement("span");
@@ -1038,42 +1011,38 @@ buttons.forEach(button => {
 
       ripple.remove();
 
-    }, 650);
+    }, 750);
 
 
-    /* MAIN GLOW */
+    /* Panel pulse */
 
-    if (wrapper) {
-
-      wrapper.classList.remove("pulse");
-
-      void wrapper.offsetWidth;
-
-      wrapper.classList.add("pulse");
-
-    }
+    wrapper.classList.remove(
+      "lavender-pulse"
+    );
 
 
-    /* STATUS */
+    void wrapper.offsetWidth;
 
-    const name =
+
+    wrapper.classList.add(
+      "lavender-pulse"
+    );
+
+
+    /* Status */
+
+    statusTitle.textContent =
       this.dataset.name;
 
 
-    if (statusBox &&
-        statusTitle &&
-        statusText) {
+    statusText.textContent =
+      "☕ Caffeine Nation • " +
+      this.dataset.name;
 
-      statusTitle.textContent =
-        name;
 
-      statusText.textContent =
-        "Caffeine Nation • " +
-        name;
-
-      statusBox.classList.add("show");
-
-    }
+    statusBox.classList.add(
+      "show"
+    );
 
   });
 
@@ -1084,39 +1053,31 @@ buttons.forEach(button => {
    SETTINGS
 ========================================================= */
 
-const settingsButton =
-  document.getElementById("settingsButton");
-
-
-settingsButton.addEventListener(
-  "click",
-  function() {
-
-    statusBox.classList.add("show");
+document
+  .getElementById("settingsButton")
+  .addEventListener("click", function() {
 
     statusTitle.textContent =
       "Settings";
 
     statusText.textContent =
-      "Caffeine Nation settings are ready.";
+      "☕ Caffeine Nation settings are ready.";
 
-  }
-);
+    statusBox.classList.add("show");
+
+  });
 
 
 /* =========================================================
-   CAFFEINE GLOW TOGGLE
+   GLOW TOGGLE
 ========================================================= */
-
-const glowButton =
-  document.getElementById("glowButton");
 
 let glowEnabled = true;
 
 
-glowButton.addEventListener(
-  "click",
-  function() {
+document
+  .getElementById("glowButton")
+  .addEventListener("click", function() {
 
     glowEnabled =
       !glowEnabled;
@@ -1125,56 +1086,51 @@ glowButton.addEventListener(
     if (glowEnabled) {
 
       wrapper.style.boxShadow =
-
         "0 25px 50px -12px rgba(0,0,0,.9)," +
-
-        "0 0 35px rgba(211,211,255,.20)," +
-
-        "0 0 70px rgba(211,211,255,.07)";
-
+        "0 0 40px rgba(211,211,255,.35)," +
+        "0 0 80px rgba(211,211,255,.12)";
 
       statusTitle.textContent =
         "Caffeine Glow ON";
 
-
       statusText.textContent =
-        "The lavender Caffeine Glow is active.";
+        "✨ Lavender glow activated.";
 
     }
 
     else {
 
       wrapper.style.boxShadow =
-
-        "0 25px 50px -12px rgba(0,0,0,.9)";
-
+        "0 25px 50px -12px rgba(0,0,0,.9)," +
+        "0 0 30px rgba(212,163,115,.08)";
 
       statusTitle.textContent =
         "Caffeine Glow OFF";
 
-
       statusText.textContent =
-        "The extra glow has been turned off.";
+        "The extra glow has been disabled.";
 
     }
 
 
-    statusBox.classList.add("show");
+    statusBox.classList.add(
+      "show"
+    );
 
-  }
-);
+  });
 
 
 /* =========================================================
    FLOATING PARTICLES
 ========================================================= */
 
-const particleSymbols = [
+const symbols = [
 
   "☕",
   "♟",
   "✦",
   "✧",
+  "✦",
   "•"
 
 ];
@@ -1187,14 +1143,13 @@ function createParticle() {
 
 
   particle.className =
-    "floating-particle";
+    "particle";
 
 
   particle.textContent =
-    particleSymbols[
+    symbols[
       Math.floor(
-        Math.random() *
-        particleSymbols.length
+        Math.random() * symbols.length
       )
     ];
 
@@ -1204,53 +1159,56 @@ function createParticle() {
 
 
   particle.style.fontSize =
-    (10 + Math.random() * 14) + "px";
+    (14 + Math.random() * 18) + "px";
 
 
   particle.style.animationDuration =
-    (6 + Math.random() * 7) + "s";
+    (7 + Math.random() * 6) + "s";
 
 
-  document.body.appendChild(
-    particle
-  );
+  particle.style.animationDelay =
+    "0s";
+
+
+  document
+    .getElementById("particles")
+    .appendChild(particle);
 
 
   setTimeout(() => {
 
     particle.remove();
 
-  }, 14000);
+  }, 15000);
 
 }
 
 
-/* Start particles */
+/* Start with several */
 
 for (
   let i = 0;
-  i < 5;
+  i < 10;
   i++
 ) {
 
   setTimeout(
     createParticle,
-    i * 500
+    i * 350
   );
 
 }
 
 
-/* Continue particles */
+/* Keep spawning */
 
 setInterval(
   createParticle,
-  900
+  650
 );
 
 </script>
 
 
 </body>
-
 </html>
