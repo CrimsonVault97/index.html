@@ -3,14 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Caffeine Nation</title>
 
 <style>
-
-/* =========================================================
-   BASE
-========================================================= */
 
 * {
   box-sizing: border-box;
@@ -23,7 +18,6 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-
   background: #0b0604;
   color: #faedcd;
 
@@ -51,23 +45,18 @@ body {
 #particles {
   position: fixed;
   inset: 0;
-
   pointer-events: none;
-
   overflow: hidden;
-
   z-index: 0;
 }
 
 .particle {
   position: absolute;
-
   bottom: -60px;
 
   color: #D3D3FF;
 
   font-size: 18px;
-
   font-weight: 900;
 
   opacity: 0;
@@ -83,7 +72,7 @@ body {
 
   0% {
     transform:
-      translate3d(0, 0, 0)
+      translate3d(0,0,0)
       rotate(0deg)
       scale(.5);
 
@@ -96,21 +85,21 @@ body {
 
   45% {
     transform:
-      translate3d(40px, -40vh, 0)
+      translate3d(40px,-40vh,0)
       rotate(120deg)
       scale(1);
   }
 
   70% {
     transform:
-      translate3d(-45px, -70vh, 0)
+      translate3d(-45px,-70vh,0)
       rotate(240deg)
       scale(.9);
   }
 
   100% {
     transform:
-      translate3d(50px, -115vh, 0)
+      translate3d(50px,-115vh,0)
       rotate(360deg)
       scale(.5);
 
@@ -135,7 +124,6 @@ body {
   padding: 32px 24px;
 
   background: #0b0604;
-
   color: #faedcd;
 
   border-left: 1px solid #8b5a2b;
@@ -146,7 +134,6 @@ body {
     0 0 30px rgba(212,163,115,.08);
 
   position: relative;
-
   z-index: 2;
 
   transition:
@@ -164,25 +151,19 @@ body {
 .brand-badge {
 
   display: inline-flex;
-
   align-items: center;
-
   gap: 8px;
 
   background: rgba(212,163,115,.1);
-
   color: #d4a373;
 
   font-size: 10px;
-
   font-weight: 800;
-
   letter-spacing: 3px;
 
   padding: 6px 16px;
 
   border-radius: 30px;
-
   border: 1px solid #52331c;
 
   text-transform: uppercase;
@@ -195,7 +176,6 @@ body {
   color: #ffd166;
 
   font-size: 26px;
-
   font-weight: 900;
 
   margin: 0 0 4px 0;
@@ -204,13 +184,11 @@ body {
 
   text-shadow:
     0 4px 12px rgba(255,209,102,.25);
-
 }
 
 .brand-subtitle {
 
   font-size: 11px;
-
   letter-spacing: 3px;
 
   margin: 0;
@@ -218,7 +196,6 @@ body {
   color: #a67c52;
 
   font-weight: bold;
-
   text-transform: uppercase;
 }
 
@@ -230,9 +207,7 @@ body {
 .divider {
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   margin: 20px 0;
@@ -255,21 +230,18 @@ body {
 
 
 /* =========================================================
-   SECTION TITLE
+   SECTION TITLES
 ========================================================= */
 
 .section-title {
 
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
 
   border-bottom: 1px solid #3d2314;
 
   padding-bottom: 8px;
-
   margin: 20px 0 10px;
 }
 
@@ -280,7 +252,6 @@ body {
   color: #ffd166;
 
   font-weight: 800;
-
   letter-spacing: 2px;
 
   text-transform: uppercase;
@@ -294,9 +265,7 @@ body {
 .menu-button {
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   width: 100%;
@@ -314,7 +283,6 @@ body {
   border-radius: 12px;
 
   font-size: 13px;
-
   font-weight: 700;
 
   margin-bottom: 8px;
@@ -322,7 +290,6 @@ body {
   cursor: pointer;
 
   position: relative;
-
   overflow: hidden;
 
   transition:
@@ -339,8 +306,7 @@ body {
 
   border-color: #8b5a2b;
 
-  transform:
-    translateX(5px);
+  transform: translateX(5px);
 }
 
 .menu-button:active {
@@ -355,7 +321,6 @@ body {
   color: #a67c52;
 
   font-size: 20px;
-
   line-height: 10px;
 
   transition:
@@ -398,7 +363,6 @@ body {
 }
 
 .status-box.show {
-
   display: block;
 }
 
@@ -407,7 +371,6 @@ body {
   color: #ffd166;
 
   font-size: 12px;
-
   font-weight: 900;
 
   margin-bottom: 5px;
@@ -418,7 +381,6 @@ body {
   color: #d4a373;
 
   font-size: 11px;
-
   line-height: 1.5;
 }
 
@@ -445,7 +407,6 @@ body {
   position: absolute;
 
   width: 15px;
-
   height: 15px;
 
   border-radius: 50%;
@@ -457,7 +418,7 @@ body {
     0 0 30px #D3D3FF;
 
   transform:
-    translate(-50%, -50%)
+    translate(-50%,-50%)
     scale(0);
 
   pointer-events: none;
@@ -470,7 +431,7 @@ body {
   to {
 
     transform:
-      translate(-50%, -50%)
+      translate(-50%,-50%)
       scale(30);
 
     opacity: 0;
@@ -479,7 +440,7 @@ body {
 
 
 /* =========================================================
-   BOUNCE ANIMATION
+   BOUNCE
 ========================================================= */
 
 .lavender-bounce {
@@ -505,7 +466,7 @@ body {
 
 
 /* =========================================================
-   FINAL LAVENDER MODE
+   LAVENDER MODE
 ========================================================= */
 
 body.lavender-mode {
@@ -515,6 +476,12 @@ body.lavender-mode {
   color: #0b0604 !important;
 }
 
+
+/* =========================================================
+   IMPORTANT:
+   FLOATING CHESS PIECES BECOME BLACK
+========================================================= */
+
 body.lavender-mode .particle {
 
   color: #ffffff;
@@ -523,6 +490,23 @@ body.lavender-mode .particle {
     0 0 10px #ffffff,
     0 0 25px #D3D3FF;
 }
+
+
+/* BLACK CHESS PIECES */
+
+body.lavender-mode .particle.chess-piece {
+
+  color: #000000 !important;
+
+  text-shadow:
+    0 0 5px rgba(0,0,0,.45),
+    0 0 12px rgba(0,0,0,.2) !important;
+}
+
+
+/* =========================================================
+   SIDEBAR LAVENDER
+========================================================= */
 
 .caffie-wrapper.lavender-mode {
 
@@ -539,7 +523,9 @@ body.lavender-mode .particle {
 }
 
 
-/* Everything inside changes with it */
+/* =========================================================
+   LAVENDER CONTENT
+========================================================= */
 
 .lavender-mode .brand-badge {
 
@@ -684,7 +670,7 @@ body.lavender-mode .particle {
    MOBILE
 ========================================================= */
 
-@media (max-width: 520px) {
+@media (max-width:520px) {
 
   .caffie-wrapper {
 
@@ -695,9 +681,7 @@ body.lavender-mode .particle {
     min-height: 100vh;
 
     border-left: 0;
-
     border-right: 0;
-
   }
 }
 
@@ -708,23 +692,29 @@ body.lavender-mode .particle {
 <body>
 
 
-<!-- =========================================================
-     FLOATING OBJECTS
-========================================================= -->
+<!-- FLOATING OBJECTS -->
 
 <div id="particles"></div>
 
 
 <!-- =========================================================
-     CAFFEINE NATION SIDEBAR
+     CAFFEINE NATION
 ========================================================= -->
 
-<div class="caffie-wrapper" id="caffieWrapper">
+<div
+  class="caffie-wrapper"
+  id="caffieWrapper"
+>
 
 
   <!-- BRAND -->
 
-  <div style="text-align:center; margin-bottom:24px;">
+  <div
+    style="
+      text-align:center;
+      margin-bottom:24px;
+    "
+  >
 
     <div class="brand-badge">
 
@@ -736,9 +726,11 @@ body.lavender-mode .particle {
 
     </div>
 
+
     <h1 class="brand-title">
       CAFFEINE NATION
     </h1>
+
 
     <p class="brand-subtitle">
       Chess Club • Community • Competition
@@ -758,13 +750,22 @@ body.lavender-mode .particle {
 
   <!-- STATUS -->
 
-  <div class="status-box" id="statusBox">
+  <div
+    class="status-box"
+    id="statusBox"
+  >
 
-    <div class="status-title" id="statusTitle">
+    <div
+      class="status-title"
+      id="statusTitle"
+    >
       CAFFEINE NATION
     </div>
 
-    <div class="status-text" id="statusText">
+    <div
+      class="status-text"
+      id="statusText"
+    >
       Select an option.
     </div>
 
@@ -935,7 +936,7 @@ body.lavender-mode .particle {
   </div>
 
 
-  <!-- REAL CLUB LINK -->
+  <!-- YOUR CLUB -->
 
   <a
     class="menu-button"
@@ -1047,7 +1048,7 @@ body.lavender-mode .particle {
 
 
   <!-- =======================================================
-       SPECIAL EFFECT
+       CAFFIE LAB
   ======================================================== -->
 
   <div class="section-title">
@@ -1069,14 +1070,14 @@ body.lavender-mode .particle {
       💜 &nbsp; Activate Lavender Mode
     </span>
 
-    <span class="arrow">›</span>
+    <span class="arrow">
+      ›
+    </span>
 
   </button>
 
 
-  <!-- =======================================================
-       FOOTER
-  ======================================================== -->
+  <!-- FOOTER -->
 
   <div class="footer">
 
@@ -1094,10 +1095,6 @@ body.lavender-mode .particle {
 </div>
 
 
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
-
 <script>
 
 /* =========================================================
@@ -1105,26 +1102,38 @@ body.lavender-mode .particle {
 ========================================================= */
 
 const wrapper =
-  document.getElementById("caffieWrapper");
+  document.getElementById(
+    "caffieWrapper"
+  );
 
 const lavenderButton =
-  document.getElementById("lavenderButton");
+  document.getElementById(
+    "lavenderButton"
+  );
 
 const statusBox =
-  document.getElementById("statusBox");
+  document.getElementById(
+    "statusBox"
+  );
 
 const statusTitle =
-  document.getElementById("statusTitle");
+  document.getElementById(
+    "statusTitle"
+  );
 
 const statusText =
-  document.getElementById("statusText");
+  document.getElementById(
+    "statusText"
+  );
 
 const particles =
-  document.getElementById("particles");
+  document.getElementById(
+    "particles"
+  );
 
 
 /* =========================================================
-   ALL BUTTONS
+   NORMAL BUTTONS
 ========================================================= */
 
 const buttons =
@@ -1133,49 +1142,18 @@ const buttons =
   );
 
 
-/* =========================================================
-   BUTTON CLICK EFFECT
-========================================================= */
-
 buttons.forEach(button => {
 
   button.addEventListener(
     "click",
     function(event) {
 
-      /*
-       * Don't interfere with the real
-       * Chess.com links.
-       */
-
       if (
-        this.id === "lavenderButton"
+        this.id ===
+        "lavenderButton"
       ) {
         return;
       }
-
-
-      /* Remove old clicked state */
-
-      buttons.forEach(item => {
-
-        item.classList.remove(
-          "clicked"
-        );
-
-      });
-
-
-      /* Temporary lavender state */
-
-      this.style.background =
-        "#D3D3FF";
-
-      this.style.color =
-        "#0b0604";
-
-      this.style.borderColor =
-        "#D3D3FF";
 
 
       /* Ripple */
@@ -1213,9 +1191,7 @@ buttons.forEach(button => {
 
 
       setTimeout(
-        () => {
-          ripple.remove();
-        },
+        () => ripple.remove(),
         750
       );
 
@@ -1250,8 +1226,6 @@ lavenderButton.addEventListener(
   "click",
   function(event) {
 
-    /* Prevent repeated activation */
-
     if (lavenderActivated) {
       return;
     }
@@ -1261,7 +1235,7 @@ lavenderButton.addEventListener(
       true;
 
 
-    /* Button ripple */
+    /* Ripple */
 
     const ripple =
       document.createElement(
@@ -1296,16 +1270,12 @@ lavenderButton.addEventListener(
 
 
     setTimeout(
-      () => {
-        ripple.remove();
-      },
+      () => ripple.remove(),
       750
     );
 
 
-    /* =====================================================
-       BOUNCE SIX TIMES
-    ===================================================== */
+    /* Bounce */
 
     wrapper.classList.remove(
       "lavender-bounce"
@@ -1320,22 +1290,10 @@ lavenderButton.addEventListener(
     );
 
 
-    /* Button itself becomes lavender */
-
-    this.style.background =
-      "#D3D3FF";
-
-    this.style.color =
-      "#0b0604";
-
-    this.style.borderColor =
-      "#D3D3FF";
-
-
     /* Status */
 
     statusTitle.textContent =
-      "CAFFEINE LAB";
+      "CAFFIE LAB";
 
     statusText.textContent =
       "☕ Charging the lavender core...";
@@ -1345,28 +1303,20 @@ lavenderButton.addEventListener(
     );
 
 
-    /* =====================================================
-       WAIT FOR BOUNCE
-    ===================================================== */
+    /* Activate after animation */
 
     setTimeout(
       () => {
-
-        /* Whole page */
 
         document.body.classList.add(
           "lavender-mode"
         );
 
 
-        /* Whole sidebar */
-
         wrapper.classList.add(
           "lavender-mode"
         );
 
-
-        /* Status */
 
         statusTitle.textContent =
           "💜 LAVENDER MODE";
@@ -1375,16 +1325,17 @@ lavenderButton.addEventListener(
           "Caffeine Nation has entered #D3D3FF mode.";
 
 
-        /* Button text */
-
         lavenderButton.innerHTML = `
+
           <span>
             💜 &nbsp; Lavender Mode Active
           </span>
 
-          <span class="arrow">✓</span>
-        `;
+          <span class="arrow">
+            ✓
+          </span>
 
+        `;
 
       },
       1900
@@ -1395,7 +1346,7 @@ lavenderButton.addEventListener(
 
 
 /* =========================================================
-   FLOATING PARTICLES
+   FLOATING SYMBOLS
 ========================================================= */
 
 const symbols = [
@@ -1420,7 +1371,9 @@ function createParticle() {
     "particle";
 
 
-  particle.textContent =
+  /* Pick random symbol */
+
+  const symbol =
     symbols[
       Math.floor(
         Math.random() *
@@ -1428,6 +1381,28 @@ function createParticle() {
       )
     ];
 
+
+  particle.textContent =
+    symbol;
+
+
+  /* =====================================================
+     MARK CHESS PIECES
+  ===================================================== */
+
+  if (
+    symbol === "♟" ||
+    symbol === "♜"
+  ) {
+
+    particle.classList.add(
+      "chess-piece"
+    );
+
+  }
+
+
+  /* Position */
 
   particle.style.left =
     (
@@ -1456,7 +1431,9 @@ function createParticle() {
 
   setTimeout(
     () => {
+
       particle.remove();
+
     },
     15000
   );
@@ -1464,7 +1441,9 @@ function createParticle() {
 }
 
 
-/* Initial floating objects */
+/* =========================================================
+   START FLOATING ANIMATION
+========================================================= */
 
 for (
   let i = 0;
@@ -1480,15 +1459,12 @@ for (
 }
 
 
-/* Keep them coming */
-
 setInterval(
   createParticle,
   650
 );
 
 </script>
-
 
 </body>
 </html>
